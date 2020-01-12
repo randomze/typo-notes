@@ -18,6 +18,7 @@ private:
 
   Dictionary& m_dictionary;
   std::vector<std::string> m_text;
+  std::string m_delim;
 
 };
 

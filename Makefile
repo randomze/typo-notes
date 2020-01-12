@@ -1,4 +1,4 @@
-CXXFLAGS= -Wall -Wextra
+CXXFLAGS=-Wall -Wextra
 OBJECTS=main.o dictionary.o lexer.o argumentparser.o
 
 all: $(OBJECTS)

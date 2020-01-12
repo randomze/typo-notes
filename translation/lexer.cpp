@@ -5,7 +5,8 @@
 
 Lexer::Lexer(std::string fileLoc, Dictionary &dictionary)
 :
-m_dictionary(dictionary)
+m_dictionary(dictionary),
+m_delim("«")
 {
   std::fstream file;
   file.open(fileLoc, std::fstream::in);
@@ -17,10 +18,10 @@ m_dictionary(dictionary)
     while(std::getline(file, line))
     {
       std::string::size_type pos;
-      while((pos = line.find("«")) != std::string::npos)
+      while((pos = line.find(m_delim)) != std::string::npos)
       {
         std::string::size_type delim = line.find_first_of(" \n", pos);
-        std::string key = line.substr(pos + std::string("«").size(), delim - (pos + std::string("«").size()));
+        std::string key = line.substr(pos + std::string(m_delim).size(), delim - (pos + std::string(m_delim).size()));
         std::cout << "key: " << key << std::endl;
         line.replace(pos, delim - pos, m_dictionary.getValue(key));
       }
